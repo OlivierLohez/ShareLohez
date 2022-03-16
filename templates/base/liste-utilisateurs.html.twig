@@ -22,8 +22,12 @@
                         {% for info in user %}
                         <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
                             <td>{{ info.email | capitalize }}</td>
-                            <td>{{ info.Dateinscription|date("m/d/y")}}</td>
-                            <td>{{ info.isVerified}}</td>
+                            <td>{{ info.Dateinscription|date("d/m/y")}}</td>
+                            <td>{% if info.isVerified == true %}
+                                Vérifié
+                                {% else %}
+                                Non Vérifié
+                                {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>
