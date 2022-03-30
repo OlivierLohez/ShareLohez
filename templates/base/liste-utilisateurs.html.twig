@@ -23,6 +23,13 @@
                         <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
                             <td>{{ info.email | capitalize }}</td>
                             <td>{{ info.Dateinscription|date("d/m/y")}}</td>
+                            <td>{% if "ROLE_ADMIN" in info.roles %}
+                                Administrateur
+                                {% elseif "ROLE_MODO" in info.roles %}
+                                Modérateur
+                                {% else %}
+                                Utilisateur
+                                {% endif %}
                             <td>{% if info.isVerified == true %}
                                 Vérifié
                                 {% else %}

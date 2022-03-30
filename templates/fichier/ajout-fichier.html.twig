@@ -21,22 +21,26 @@
                     <thead>
                         <tr>
                             <th scope="col">Nom</th>
-                            <th scope="col">Propriétaire</th>
+                            {#<th scope="col">Propriétaire</th>#}
                             <th scope="col">Date</th>
                             <th scope="col">Extension</th>
                             <th scope="col">Taille</th>
+                            <th scope="col">Téléchargement</th>
+                            <th scope="col">Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for f in fichiers %}
                         <tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
                             <td>{{f.nomOriginal}}</td>
-                            <td>{{f.proprietaire.nom}}
-                                {{f.proprietaire.prenom}}</td>
+                            {#<td>{{f.proprietaire.nom}}
+                                {{f.proprietaire.prenom}}</td>#}
                             <td>{{f.dateEnvoi | date("d-m-Y à H:i:s") }}</td>
                             <td>
                                 {% if f.extension == 'pdf'%}
                                 <i class="bi bi-file-earmark-pdf"></i>
+                                {% elseif f.extension == 'png' %}
+                                <i class="bi bi-images"></i>
                                 {% else %}
                                 <i class="bi bi-file-earmark-text"></i>
                                 {% endif %}
@@ -44,6 +48,12 @@
                             {% set ko = f.taille / 1000 %}
                             <td>{{ko}}
                                 ko</td>
+                                <td>
+                                <a href="{{path('telechargement-fichier', {'id':f.id})}}" target="_blank">
+                                <i class="bi bi-download text-black"></i></td>
+                                <td>
+                                <a href="{{path('supprimer-fichier',{'id':f.id})}}">
+                                <i class="bi bi-trash text-green"></i></td>
                         </tr>
                         {% endfor %}
                     </tbody>

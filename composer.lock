@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "399d6c6d5db1d459e8a61a25f7d68839",
+    "content-hash": "aa7724a39e4ef1081242920b566cc744",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2799,16 +2799,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.3.4",
+            "version": "v5.3.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "343f4fe324383ca46792cae728a3b6e2f708fb32"
+                "reference": "1c11c4846dff1b62c869a47d45fa5ed5e93faea2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/343f4fe324383ca46792cae728a3b6e2f708fb32",
-                "reference": "343f4fe324383ca46792cae728a3b6e2f708fb32",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/1c11c4846dff1b62c869a47d45fa5ed5e93faea2",
+                "reference": "1c11c4846dff1b62c869a47d45fa5ed5e93faea2",
                 "shasum": ""
             },
             "require": {
@@ -2842,7 +2842,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v5.3.4"
+                "source": "https://github.com/symfony/filesystem/tree/v5.3.14"
             },
             "funding": [
                 {
@@ -2858,7 +2858,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-21T12:40:44+00:00"
+            "time": "2022-01-02T09:51:59+00:00"
         },
         {
             "name": "symfony/finder",

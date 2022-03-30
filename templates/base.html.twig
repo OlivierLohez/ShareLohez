@@ -65,7 +65,7 @@
                             <li><a class="dropdown-item" href="{{path('liste-contacts')}}">Liste Contact</a></li>
                             <li><a class="dropdown-item" href="{{path('liste-utilsateurs')}}">Liste utilisateurs</a></li>
                         </ul>
-                        {%endif%}
+                        {% endif %}
                         {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li class="nav-item"><a class="nav-link text-white" href="{{path('app_login')}}">Se connecter</a>
                     </li>
@@ -75,9 +75,10 @@
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{path('app_logout')}}">{{app.user.email}}
-                            <i class="bi bi-x-circle-fill text-white"></i></a></li>
+                            <i class="bi bi-x-circle-fill text-white"></i>
+                        </a>
+                    </li>
                     {% endif %}
-
                 </ul>
             </div>
         </div>
