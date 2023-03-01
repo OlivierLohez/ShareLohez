@@ -54,9 +54,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $Dateinscription;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="users")
+     */
+    private $inviter;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="inviter")
+     */
+    private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Accepter::class, mappedBy="source", orphanRemoval=true)
+     */
+    private $accepters;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Fichier::class, mappedBy="user")
+     */
+    private $fichier;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Telecharger::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $telechargers;
+    
+
     public function __construct()
     {
         $this->fichiers = new ArrayCollection();
+        $this->inviter = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->accepters = new ArrayCollection();
+        $this->fichier = new ArrayCollection();
+        $this->telechargers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -201,4 +232,122 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|self[]
+     */
+    public function getInviter(): Collection
+    {
+        return $this->inviter;
+    }
+
+    public function addInviter(self $inviter): self
+    {
+        if (!$this->inviter->contains($inviter)) {
+            $this->inviter[] = $inviter;
+        }
+
+        return $this;
+    }
+
+    public function removeInviter(self $inviter): self
+    {
+        $this->inviter->removeElement($inviter);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(self $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addInviter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(self $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeInviter($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Accepter[]
+     */
+    public function getAccepters(): Collection
+    {
+        return $this->accepters;
+    }
+
+    public function addAccepter(Accepter $accepter): self
+    {
+        if (!$this->accepters->contains($accepter)) {
+            $this->accepters[] = $accepter;
+            $accepter->setSource($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccepter(Accepter $accepter): self
+    {
+        if ($this->accepters->removeElement($accepter)) {
+            // set the owning side to null (unless already changed)
+            if ($accepter->getSource() === $this) {
+                $accepter->setSource(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Fichier[]
+     */
+    public function getFichier(): Collection
+    {
+        return $this->fichier;
+    }
+
+    /**
+     * @return Collection|Telecharger[]
+     */
+    public function getTelechargers(): Collection
+    {
+        return $this->telechargers;
+    }
+
+    public function addTelecharger(Telecharger $telecharger): self
+    {
+        if (!$this->telechargers->contains($telecharger)) {
+            $this->telechargers[] = $telecharger;
+            $telecharger->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTelecharger(Telecharger $telecharger): self
+    {
+        if ($this->telechargers->removeElement($telecharger)) {
+            // set the owning side to null (unless already changed)
+            if ($telecharger->getUser() === $this) {
+                $telecharger->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }

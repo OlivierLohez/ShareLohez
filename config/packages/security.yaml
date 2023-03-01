@@ -21,6 +21,7 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\AppCustomAuthenticator
+            entry_point: App\Security\AppCustomAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -41,7 +42,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/private, roles: ROLE_MOD }
+        #- { path: ^/private, roles: ROLE_MOD }
 
 when@test:
     security:

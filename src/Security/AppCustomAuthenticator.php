@@ -50,10 +50,8 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
         return new RedirectResponse($this->urlGenerator->generate('index'));        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-
-        // For example:
-        //return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        
+        //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
     protected function getLoginUrl(Request $request): string
@@ -61,6 +59,9 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 
-    public function supports(Request $request): bool    {        return self::LOGIN_ROUTE === $request->attributes->get('_route')         
-    && $request->isMethod('POST');    }
+    public function supports(Request $request): bool    
+    {        
+        return self::LOGIN_ROUTE === $request->attributes->get('_route')         
+            && $request->isMethod('POST');
+    }
 }

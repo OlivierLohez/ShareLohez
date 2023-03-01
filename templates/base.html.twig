@@ -74,6 +74,11 @@
 
                     {% else %}
                     <li class="nav-item">
+                        <a class="nav-link text-white" href="{{path('app_logout')}}">Mon profil
+                            <i class="bi bi-x-circle-fill text-white"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-white" href="{{path('app_logout')}}">{{app.user.email}}
                             <i class="bi bi-x-circle-fill text-white"></i>
                         </a>

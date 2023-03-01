@@ -72,7 +72,7 @@ class FichierController extends AbstractController
         }
         }
 
-        #[Route('/profil-supprimer-fichier/{id}', name: 'supprimer-fichier', requirements:["id"=>"\d+"] )]
+    #[Route('/profil-supprimer-fichier/{id}', name: 'supprimer-fichier', requirements:["id"=>"\d+"] )]
         public function supprimerFichier(int $id){
         $doctrine = $this->getDoctrine();
         $repoFichier = $doctrine->getRepository(Fichier::class);
